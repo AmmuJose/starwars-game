@@ -135,6 +135,14 @@ h1 {
 #enemies {
     margin-top: -15px;
 }
+/* footer */
+footer {
+    font-size: 10px;
+    background-color: rgba(17, 17, 17, 0.84);
+    text-align: center;
+    margin-top: 10px;
+    padding: 10px;
+}
 
 /* media Query */
 @media (max-width:400px) {
