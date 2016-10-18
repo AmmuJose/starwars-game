@@ -32,15 +32,18 @@ var game = {
 
         // create HP and attack power randomly
         setUpAttackPowerAndHP: function() {
-            var i = 0;
+
             for (var character in this.characters) {
-                this.characters[character].healthPoint = Math.floor(Math.random() * (200 - 100) + 100);
-                if (i == 1 || i == 3) {
+                var i = Math.floor(Math.random() * 4);
+                var j = Math.floor(Math.random() * 4);
+                this.characters[character].healthPoint = Math.floor(Math.random() * (180 - 150) + 150);
+                if (i == 1 || i == 3 || j == 0 || j == 2) {
                     this.characters[character].baseAttackPower = Math.floor(Math.random() * (10 - 2) + 2);
                 } else {
                     this.characters[character].baseAttackPower = Math.floor(Math.random() * (25 - 10) + 10);
                 }
-                i++;
+                // console.log(character + " HP :  " + this.characters[character].healthPoint);
+                // console.log(character + " BAP :  " + this.characters[character].baseAttackPower);
             }
         },
 
@@ -49,8 +52,6 @@ var game = {
             $("#enemiesHeader").hide();
             var i = 1;
             for (var character in this.characters) {
-                // console.log(character + " : : " + this.characters[character].baseAttackPower);
-                // console.log(character + " : : " + this.characters[character].healthPoint);
                 var id = '#character' + i;
                 var html = '<div class="characterName">' + character + '</div>';
                 html += '<img src="assets/images/' + this.characters[character].image;
@@ -63,45 +64,42 @@ var game = {
 
         // check game rules
         attack: function() {
-            if (jQuery.isEmptyObject(this.userCharacter)) {
-                if (!this.gameOver) {
+            if (!this.gameOver) {
+                if (jQuery.isEmptyObject(this.userCharacter)) {
                     $("#info").html("Please choose your character.");
-                }
-            } else if (jQuery.isEmptyObject(this.defender)) {
-                if (!this.gameOver) {
+                } else if (jQuery.isEmptyObject(this.defender)) {
                     $("#info").html("Please choose an Enemy.");
-                }
-            } else if (!this.gameOver) {
-                this.attackDefender();
-                this.attackUserCharacter();
-
-                if (this.defender.healthPoint <= 0) {
-                    if (this.userCharacter.healthPoint <= 0) {
-                        $("#info").html("You been defeted.... GAME OVER!!!");
-                        this.gameOver = true;
-                    } else {
-                        this.printMessageAndClearObj();
-                    }
                 } else {
-                    if (this.userCharacter.healthPoint <= 0) {
-                        $("#info").html("You been defeted.... GAME OVER!!!");
-                        this.gameOver = true;
-                    } else {
-                        this.printDamage();
-                    }
+                    this.attackPower = this.attackPower + this.userCharacter.baseAttackPower;
+                    this.counterAttackPower = this.defender.baseAttackPower;
+                    this.fight();
+                }
+            }
+        },
+
+        // check user character and defender HP to see who wins
+        fight: function() {
+            this.attackDefender();
+            if (this.defender.healthPoint <= 0) {
+                this.printMessageAndClearObj();
+            } else {
+                this.attackUserCharacter();
+                if (this.userCharacter.healthPoint <= 0) {
+                    $("#info").html("You been defeted.... GAME OVER!!!");
+                    this.gameOver = true;
+                } else {
+                    this.printDamage();
                 }
             }
         },
 
         // calculate and print defender damage
         attackDefender: function() {
-        	this.attackPower = this.attackPower + this.userCharacter.baseAttackPower;
             this.defender.healthPoint -= this.attackPower;
             $(".defenderHP").html(this.defender.healthPoint);
         },
 
         attackUserCharacter: function() {
-        	this.counterAttackPower = this.defender.baseAttackPower;
             this.userCharacter.healthPoint -= this.counterAttackPower;
             $(".userCharacterHP").html(this.userCharacter.healthPoint);
         },
@@ -222,7 +220,7 @@ var game = {
             this.userPickedDefenderName = "";
             this.counterAttackPower = 0;
             if (jQuery.isEmptyObject(this.enemies)) {
-                $("#info").html("You Won!!!!  GAME OVER!!!");
+                $("#info").html("You Won!!!!  GAME OVER!!!");            
                 this.gameOver = true;
             }
         },
@@ -269,7 +267,7 @@ var game = {
     } //end game object
 
 window.onload = function(event) {
-        game.setUpAttackPowerAndHP();
+        //game.setUpAttackPowerAndHP();
         game.addCharaters();
         game.setupEventHandlers();
     } //End window onload
