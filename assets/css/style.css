@@ -94,8 +94,8 @@ h1 {
     color: #000;
 }
 
-.enemies {
-    margin-bottom: 5px;
+.enemies, .characters {
+    margin: 5px;
 }
 
 .enemyImg,
@@ -130,6 +130,10 @@ h1 {
 
 .btn-primary {
     background-color: #06c;
+}
+
+#enemies {
+    margin-top: -15px;
 }
 
 /* media Query */
