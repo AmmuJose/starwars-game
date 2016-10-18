@@ -34,16 +34,8 @@ var game = {
         setUpAttackPowerAndHP: function() {
 
             for (var character in this.characters) {
-                var i = Math.floor(Math.random() * 4);
-                var j = Math.floor(Math.random() * 4);
-                this.characters[character].healthPoint = Math.floor(Math.random() * (180 - 150) + 150);
-                if (i == 1 || i == 3 || j == 0 || j == 2) {
-                    this.characters[character].baseAttackPower = Math.floor(Math.random() * (10 - 2) + 2);
-                } else {
-                    this.characters[character].baseAttackPower = Math.floor(Math.random() * (25 - 10) + 10);
-                }
-                // console.log(character + " HP :  " + this.characters[character].healthPoint);
-                // console.log(character + " BAP :  " + this.characters[character].baseAttackPower);
+                this.characters[character].baseAttackPower = Math.floor(Math.random() * (30 - 2) + 2);
+                this.characters[character].healthPoint = Math.floor(Math.random() * (200 - 100) + 100);
             }
         },
 
@@ -220,7 +212,7 @@ var game = {
             this.userPickedDefenderName = "";
             this.counterAttackPower = 0;
             if (jQuery.isEmptyObject(this.enemies)) {
-                $("#info").html("You Won!!!!  GAME OVER!!!");            
+                $("#info").html("You Won!!!!  GAME OVER!!!");
                 this.gameOver = true;
             }
         },
