@@ -259,7 +259,6 @@ var game = {
     } //end game object
 
 window.onload = function(event) {
-        //game.setUpAttackPowerAndHP();
         game.addCharaters();
         game.setupEventHandlers();
     } //End window onload

@@ -22,7 +22,7 @@ body {
 h1 {
     background-color: rgba(17, 17, 17, 0.84);
     color: #42b4e6;
-    text-shadow: 8px 8px 54px #4aaaa5;
+    text-shadow: 8px 8px 54px red;
     font-weight: bold;
     font-size: 3em;
     margin: 10px 15px;
@@ -108,7 +108,7 @@ h1 {
 .defenderImg,
 .defenderName,
 .defenderHP {
-    background-color: #000;
+    background-color: #111;
     color: #fff;
 }
 
