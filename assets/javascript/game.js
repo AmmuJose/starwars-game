@@ -258,7 +258,7 @@ var game = {
         }
     } //end game object
 
-window.onload = function(event) {
-        game.addCharaters();
-        game.setupEventHandlers();
-    } //End window onload
+$(document).ready(function() {
+    game.addCharaters();
+    game.setupEventHandlers();
+});
