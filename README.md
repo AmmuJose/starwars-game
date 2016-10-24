@@ -1,1 +1,2 @@
-# week-4-game
+#Gme using JQuery, HTML5 and Bootstrap CSS
+
