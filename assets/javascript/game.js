@@ -97,10 +97,13 @@ var game = {
         },
 
         // reset game
-        resetGame: function() {            
+        resetGame: function() {  
+            $("#userCharacter1").html('<img src="http://placehold.it/100x90/ffffff?text=Character">');
+            $("#defender").html('<img src="http://placehold.it/100x90/000000?text=Defender">');          
             $("#charactersHeader").show();
             $("#info").empty();
             this.clearDiv(this.enemies, "enemy");
+            
             this.enemies = {};
             this.userCharacter = {};
             this.defender = {};
@@ -109,9 +112,7 @@ var game = {
             this.attackPower = 0;
             this.counterAttackPower = 0;
             this.addCharaters();
-            this.gameOver = false;
-            $("#userCharacter1").html('<img src="http://placehold.it/100x90/ffffff?text=Character">');
-            $("#defender").html('<img src="http://placehold.it/100x90/000000?text=Defender">');
+            this.gameOver = false;            
         },
 
         // create objects for enemies and user character 
