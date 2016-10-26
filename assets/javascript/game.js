@@ -97,9 +97,7 @@ var game = {
         },
 
         // reset game
-        resetGame: function() {
-            $("#defender").empty();
-            $("#userCharacter1").empty();
+        resetGame: function() {            
             $("#charactersHeader").show();
             $("#info").empty();
             this.clearDiv(this.enemies, "enemy");
